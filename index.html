@@ -512,19 +512,18 @@
         document.getElementById('total-slides').textContent = totalSlides;
 
         function showSlide(n) {
+            // Cache l'ancienne slide
             slides[currentSlide].classList.remove('active');
+            slides[currentSlide].style.display = 'none';
+            slides[currentSlide].style.opacity = '0';
+        
+            // Calcule le nouvel index
             currentSlide = (n + totalSlides) % totalSlides;
-            
-            // Animation plus fluide avec transition
-            slides.forEach(slide => {
-                slide.style.display = 'none';
-                slide.style.opacity = '0';
-            });
-            
+        
+            // Affiche la nouvelle slide
             slides[currentSlide].style.display = 'flex';
             slides[currentSlide].style.opacity = '0';
-            
-            // Animation d'entrée plus fluide
+        
             setTimeout(() => {
                 slides[currentSlide].style.transition = 'opacity 0.6s ease-in-out, transform 0.6s ease-in-out';
                 slides[currentSlide].style.opacity = '1';
